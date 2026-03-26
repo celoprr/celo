@@ -78,7 +78,7 @@ export default function Home() {
 
   async function addTask() {
     if (task === '') {
-      alert('Digite algo!')
+      alert('Digite algo !')
       return
     }
     
