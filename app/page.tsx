@@ -9,7 +9,7 @@ type Task = {
   created_at: string
   done: boolean
 }
-
+export const dynamic = 'force-dynamic'
 export default function Home() {
   const [task, setTask] = useState('')
   const [tasks, setTasks] = useState<Task[]>([])
