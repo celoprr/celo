@@ -145,11 +145,78 @@ export default function Home() {
       <h1>Lista de Tarefas</h1>
       <button onClick={logout} style={{ padding: 5, marginBottom: 20 }}>Sair</button>
       
-      <div style={{ marginBottom: 20, border: '1px solid black', padding: 10 }}>
-        <h2>Estatísticas</h2>
-        <p>Total: {totalTarefas}</p>
-        <p>Concluídas: {tarefasConcluidas}</p>
-        <p>Pendentes: {tarefasPendentes}</p>
+      <div style={{ marginBottom: 30, padding: 20, backgroundColor: '#fff8dc', border: '3px dashed #ff6b6b', borderRadius: 10 }}>
+        <h2 style={{ color: '#ff6b6b', marginBottom: 20, fontSize: 24 }}>📊 Seu Gráfico de Tarefas</h2>
+        
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-around', height: 250, gap: 20, marginBottom: 20 }}>
+          {/* Barra Total */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
+            <div style={{
+              width: 60,
+              height: Math.max(totalTarefas * 20, 10),
+              backgroundColor: '#4ecdc4',
+              borderRadius: '8px 8px 0 0',
+              boxShadow: '0 4px 8px rgba(78, 205, 196, 0.3)',
+              transition: 'all 0.3s ease'
+            }} />
+            <div style={{ textAlign: 'center' }}>
+              <p style={{ fontSize: 28, fontWeight: 'bold', color: '#4ecdc4', margin: 0 }}>{totalTarefas}</p>
+              <p style={{ fontSize: 12, color: '#666', margin: '5px 0 0 0' }}>Total</p>
+            </div>
+          </div>
+
+          {/* Barra Concluídas */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
+            <div style={{
+              width: 60,
+              height: Math.max(tarefasConcluidas * 20, 10),
+              backgroundColor: '#95e1d3',
+              borderRadius: '8px 8px 0 0',
+              boxShadow: '0 4px 8px rgba(149, 225, 211, 0.3)',
+              transition: 'all 0.3s ease'
+            }} />
+            <div style={{ textAlign: 'center' }}>
+              <p style={{ fontSize: 28, fontWeight: 'bold', color: '#95e1d3', margin: 0 }}>{tarefasConcluidas}</p>
+              <p style={{ fontSize: 12, color: '#666', margin: '5px 0 0 0' }}>✅ Concluídas</p>
+            </div>
+          </div>
+
+          {/* Barra Pendentes */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
+            <div style={{
+              width: 60,
+              height: Math.max(tarefasPendentes * 20, 10),
+              backgroundColor: '#ff6b6b',
+              borderRadius: '8px 8px 0 0',
+              boxShadow: '0 4px 8px rgba(255, 107, 107, 0.3)',
+              transition: 'all 0.3s ease'
+            }} />
+            <div style={{ textAlign: 'center' }}>
+              <p style={{ fontSize: 28, fontWeight: 'bold', color: '#ff6b6b', margin: 0 }}>{tarefasPendentes}</p>
+              <p style={{ fontSize: 12, color: '#666', margin: '5px 0 0 0' }}>⏳ Pendentes</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Barra de Progresso */}
+        <div style={{ marginTop: 20 }}>
+          <p style={{ fontSize: 12, color: '#666', marginBottom: 8 }}>Progresso: {totalTarefas > 0 ? Math.round((tarefasConcluidas / totalTarefas) * 100) : 0}%</p>
+          <div style={{ 
+            width: '100%', 
+            height: 25, 
+            backgroundColor: '#e0e0e0', 
+            borderRadius: 15,
+            overflow: 'hidden',
+            border: '2px solid #ff6b6b'
+          }}>
+            <div style={{
+              height: '100%',
+              width: `${totalTarefas > 0 ? (tarefasConcluidas / totalTarefas) * 100 : 0}%`,
+              backgroundColor: '#95e1d3',
+              transition: 'width 0.3s ease'
+            }} />
+          </div>
+        </div>
       </div>
 
       <input
